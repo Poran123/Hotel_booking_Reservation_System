@@ -8,7 +8,8 @@
 					<div class="ps-3">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb mb-0 p-0">
-								<button type="button" class="btn btn-outline-primary px-5 radius-30">Add Team</button>
+
+								<a href="{{route('add.team')}}" class="btn btn-outline-primary px-5 radius-30">Add Team</a>
 							</ol>
 						</nav>
 					</div>
@@ -32,16 +33,16 @@
 									</tr>
 								</thead>
 								<tbody>
-									@foreach($team as $key=>$item)
+									@foreach($teams as $key=> $item)
 									<tr>
 										<td>{{$key+1}}</td>
-										<td><img src="{{asset($itam->image)}}" alt="" style="width:70px; height:40px"></td>
+										<td><img src="{{asset($item->image)}}" alt="" style="width:70px; height:40px"></td>
 										<td>{{$item->name}}</td>
-										<td>{{$item->psition}}</td>
+										<td>{{$item->position}}</td>
 										<td>{{$item->facebook}}</td>
 										<td>
-											<a href="" class="btn btn-warning px-3 radius-30">Edit</a>
-											<a href="" class="btn btn-warning px-3 radius-30">Delete</a>
+											<a href="{{route('edit.team',$item->id)}}" class="btn btn-warning px-3 radius-30">Edit</a>
+											<a href="{{route('delete.team',$item->id)}}" class="btn btn-danger px-3 radius-30" id="delete">Delete</a>
 										</td>
 									</tr>
 									@endforeach
