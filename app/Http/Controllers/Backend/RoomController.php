@@ -18,4 +18,8 @@ class RoomController extends Controller
         return view ('backend.allroom.rooms.edit_rooms',compact('editData'));
 
     } //end method
+
+    public function DeleteRoom($id){
+
+    }
 }
