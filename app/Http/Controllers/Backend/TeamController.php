@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Team;
 use App\Models\BookArea;
-//use Intervention\Image\Facades\Image;
 use Intervention\Image\ImageServiceProvider;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
