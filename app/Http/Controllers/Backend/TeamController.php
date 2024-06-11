@@ -30,16 +30,7 @@ class TeamController extends Controller
     public function StoreTeam(Request $request){
         
         if($request->file('image')){
-            // $manager = new ImageManager(new Driver());
-            // $name_gen  = hexdec(uniqid()).'.'.$request->file('image')->getClientOriginalExtension();
-            // $img = $manager->read($request->file('image'));
-            // $img = $img->resize(550,570);
 
-            // $img->toJpeg(80)->save(base_path('public/upload/team/'.$name_gen));
-            // $save_url = 'upload/team/'.$name_gen;
-
-
-            
             $manager = new ImageManager(new Driver());
             $name_gen = hexdec(uniqid()).'.'.$request->file('image')->getClientOriginalExtension();
             $img = $manager->read($request->file('image'));
@@ -61,16 +52,10 @@ class TeamController extends Controller
             
         }  // end if conition
 
-        // $image = $request->file('image');
-        // $name_gen  = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        // Image::make($image)->resize(550,670)->save('upload/team'.$name_gen);
-        // $save_url = 'upload/team/'.$name_gen;
-
-        
         $notification = array(
             'message' => 'Team Data Inserted Successfully',
             'alert-type' => 'success',
-    );
+        );
     
         return redirect()->route('all.team')->with($notification);
 
