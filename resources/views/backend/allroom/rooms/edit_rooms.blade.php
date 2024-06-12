@@ -60,12 +60,21 @@
                     <label for="input3" class="form-label">Main Image</label>
                     <input type="file" name="image" class="form-control" id="image" >
 
-                    <img id="showImage" src="{{(!empty($editData->image)) ? url('upload/roomimg/.$editData->image') : url('upload/no_image.jpg')}}" alt="Admin" class=" bg-primary" width="60">
+                    <img id="showImage" src="{{(!empty($editData->image)) ? url('upload/roomimg/.$editData->image') : url('upload/no_image.jpg')}}" alt="Admin" class=" bg-primary" width="60" height="50">
                 </div>
 
                 <div class="col-md-6">
                     <label for="input4" class="form-label">Gallery Image</label>
                     <input type="file" name="multi_img[]" class="form-control" multiple id="multiImg" accept="image/jpeg, image/jpg, image/gif, image/png">
+
+                    @foreach ($multiimgs as $item)
+
+                    
+                    <img src="{{(!empty($item->multi_img)) ? url('upload/roomimg/multi_img/'.$item->multi_img) : url('upload/no_image.jpg')}}" alt="Admin" class=" bg-primary" width="60">
+                    <a href="{{route('multi.image.delete', $item->id)}}"><i class="lni lni-close"></i></a>
+
+
+                    @endforeach
 
                     <div class="row" id="preview_img"></div>
                 </div>
@@ -89,25 +98,19 @@
 
                 <div class="col-md-3">
                     <label for="input2" class="form-label">Room Capacity</label>
-                    <input type="text" name="room_capacity" class="form-control" id="input2" value="{{$editData->room_capacity}}">
+                    <input type="text" name="room_capacity" class="form-control" id="input2" 
+                    value="{{$editData->	room_capacity}}">
                 </div>
 
-                <div class="col-md-6">
-                    <label for="input7" class="form-label">Room View</label>
-                    <select name="view" id="input7" class="form-select">
-                        <option selected="">Choose...</option>
-                        <option value="Sea View">Sea View</option>
-                        <option value="Hill View">Hill View</option>
-                    </select>
-                </div>
+                
 
                 <div class="col-md-6">
                     <label for="input7" class="form-label">Bed Style</label>
                     <select name="bed_style" id="input7" class="form-select">
                         <option selected="">Choose...</option>
-                        <option value="Queen Bed">Queen Bed</option>
-                        <option value="Twin Bed">Twin Bed</option>
-                        <option value="King Bed">King Bed</option>
+                        <option value="Queen Bed" {{$editData->bed_style == 'Queen Bed' ? 'selected':''}}>Queen Bed</option>
+                        <option value="Twin Bed" {{$editData->bed_style == 'Twin Bed' ? 'selected':''}}>Twin Bed</option>
+                        <option value="King Bed" {{$editData->bed_style == 'King Bed' ? 'selected':''}}>King Bed</option>
                     </select>
                 </div>
           
@@ -119,7 +122,7 @@
 
                 <div class="col-md-12">
                     <label for="input11" class="form-label"> Description</label>
-                    <textarea name="description" class="form-control" id="myeditorinstance" >
+                    <textarea name="description" class="form-control"  id="input11" placeholder  ="Write something" >
                         {!! $editData->description !!}</textarea>
                 </div>
 
@@ -162,8 +165,8 @@
           </div>
           <div class="col-md-4">
              <div class="form-group" style="padding-top: 30px;">
-                   <a class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i></a>
-                   <span class="btn btn-danger btn-sm removeeventmore"><i class="fa fa-minus-circle"></i></span>
+                   <a class="btn btn-success addeventmore"><i class="lni lni-circle-plus"></i></a>
+                   <span class="btn btn-danger btn-sm removeeventmore"><i class="lni lni-circle-minus"></i></span>
              </div>
           </div>
        </div>
@@ -229,8 +232,75 @@
 
 
                             <div class="tab-pane fade" id="primaryprofile" role="tabpanel">
-                                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+
+                                <div class="card">
+                                    <div class="card-body">
+         <a class="card-title btn btn-primary float-right" onclick="addRoomNo()" id="addRoomNo">
+                                            <i class="lni lni-plus">Add New</i>
+                                        </a>
+                <div class="roomnoHide" id="roomnoHide">
+                    <form action="{{route('store.room.no', $editData->id)}}" method="post">
+                        @csrf
+
+                        <input type="hidden" name="rooms_type_id" value="{{$editData->roomtype_id}}">
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="input2" class="form-label">Room No</label>
+                                 <input type="text" name="room_no" class="form-control" id="input2">
                             </div>
+
+                            <div class="col-md-4">
+                                <label for="input7" class="form-label">Status</label>
+                                <select name="view" id="input7" class="form-select">
+                                    <option selected="">Select Status...</option>
+                                    <option value="Sea View">Active</option>
+                                    <option value="Sea View">Inactive</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-success" style="margin-top:28px">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>  
+
+
+                <table class="table mb-0 table-striped" id="roomview">
+									<thead>
+										<tr>
+											<th scope="col">Room Number</th>
+											<th scope="col">Status</th>
+											<th scope="col">Action</th>
+										</tr>
+									</thead>
+									<tbody>
+									
+                                    @foreach($allroomNo as $item)
+
+                                    
+                                    <tr>
+											<td>{{ $item->room_no }}</td>
+											<td>{{ $item->status }}</td>
+											<td>
+                        <a href="{{route('edit.roomno',$item->id)}}" class="btn btn-warning px-3 radius-30">Edit</a>
+                        <a href="{{route('delete.roomno',$item->id)}}" class="btn btn-danger px-3 radius-30" id="delete">Delete</a>
+                                            </td>
+										</tr>
+                                        @endforeach
+									</tbody>
+								</table>
+                
+                
+
+
+
+
+                                    </div>
+                                </div>
+                               
+                            </div> 
+                            <!-- // end primary profile -->
                             
                         </div>
                     </div>
@@ -335,6 +405,22 @@
    });
 </script>
 <!--========== End of Basic Plan Facilities ==============-->
+
+<!--========== Start Room Number Add ==============-->
+
+<script>
+    $('#roomnoHide').hide();
+    $('#roomview').show();
+
+    function addRoomNo(){
+        $('#roomnoHide').show();
+        $('#roomview').hide();
+        $('#addRoomNo').hide();
+    }
+</script>
+
+
+<!--========== End Room Number ==============-->
 
 
 
