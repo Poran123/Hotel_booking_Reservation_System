@@ -34,7 +34,8 @@ class RoomTypeController extends Controller
     $room = new Room();
     $room->roomtype_id = $roomtype_id;
     $room->total_adult = 0; // Set a default value for total_adult
-    $room->save();
+   
+    //$room->save();
 
     $notification = array(
         'message' => 'Room Type Inserted Successfully',

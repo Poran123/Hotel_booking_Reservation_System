@@ -32,6 +32,8 @@ class RoomController extends Controller
     public function UpdateRoom(Request $request, $id){
 
         $room = Room::find($id);
+
+       
         $room->roomtype_id = $room->roomtype_id;
         $room->total_adult = $request->total_adult; 
         $room->total_child = $request->total_child;
@@ -57,6 +59,8 @@ class RoomController extends Controller
             $save_url = 'upload/roomimg/' . $name_gen; // Define the save URL
 
             $image->save(public_path($save_url));
+
+            $room->image = $save_url;
         }
 
         $room->save();

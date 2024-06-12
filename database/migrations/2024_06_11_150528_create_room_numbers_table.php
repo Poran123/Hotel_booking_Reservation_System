@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('rooms_id');
             $table->integer('rooms_type_id');
             $table->string('room_no')->nullable();
-            $table->string('status')->nullable();
+            $table->string('status')->defult(1);
             $table->timestamps();
         });
     }

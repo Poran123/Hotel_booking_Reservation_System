@@ -40,7 +40,7 @@
 
 									<tr>
 							<td>{{$key+1}}</td>
-							<td><img src="{{(!empty($item->room->image)) ? yrk('upload/roomimg/'.$item->room->image) : url('upload/no_image.jpg')}}" alt="" style="width: 50px; heigh:30px"></td>
+							<td> <img src="{{ asset($item->image) }}" alt="" style="width: 50px; height: 30px"></td>
 							<td>{{$item->name}}</td>
 							<td>
 								@foreach($rooms as $roo)
@@ -49,8 +49,9 @@
 
 								@endforeach
 										</td>
+									
 									</tr>
-									@endforeach
+							@endforeach
 									
 								</tbody>
 
@@ -63,7 +64,6 @@
 			</div>
 
 @endsection
-<!-- {{route('edit.room',$roo->id)}} -->
-<!--  -->
+
 
 								

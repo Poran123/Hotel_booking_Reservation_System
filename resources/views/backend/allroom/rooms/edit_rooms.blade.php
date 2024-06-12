@@ -63,7 +63,7 @@
                     <img id="showImage" src="{{(!empty($editData->image)) ? url('upload/roomimg/.$editData->image') : url('upload/no_image.jpg')}}" alt="Admin" class=" bg-primary" width="60" height="50">
                 </div>
 
-                <div class="col-md-6">
+             <div class="col-md-6">
                     <label for="input4" class="form-label">Gallery Image</label>
                     <input type="file" name="multi_img[]" class="form-control" multiple id="multiImg" accept="image/jpeg, image/jpg, image/gif, image/png">
 
@@ -77,7 +77,7 @@
                     @endforeach
 
                     <div class="row" id="preview_img"></div>
-                </div>
+                </div> 
 
 
                 <div class="col-md-3">
@@ -300,7 +300,7 @@
                                 </div>
                                
                             </div> 
-                            <!-- // end primary profile -->
+                           
                             
                         </div>
                     </div>
@@ -325,7 +325,6 @@
         });
     </script>
 
-    <!--------===Show MultiImage ========------->
 <script>
    $(document).ready(function(){
     $('#multiImg').on('change', function(){ //on file input change
@@ -355,7 +354,7 @@
 </script>
 
 
-<!--========== Start of add Basic Plan Facilities ==============-->
+
 <div style="visibility: hidden">
    <div class="whole_extra_item_add" id="whole_extra_item_add">
       <div class="basic_facility_section_remove" id="basic_facility_section_remove">
@@ -404,9 +403,7 @@
       });
    });
 </script>
-<!--========== End of Basic Plan Facilities ==============-->
 
-<!--========== Start Room Number Add ==============-->
 
 <script>
     $('#roomnoHide').hide();
@@ -419,8 +416,6 @@
     }
 </script>
 
-
-<!--========== End Room Number ==============-->
 
 
 
