@@ -102,7 +102,16 @@
                     value="{{$editData->	room_capacity}}">
                 </div>
 
-                
+
+
+                <div class="col-md-6">
+                    <label for="input7" class="form-label">Room View</label>
+                    <select name="view" id="input7" class="form-select">
+                        <option selected="">Choose...</option>
+                        <option value="Sea View" {{$editData->view == 'Sea View' ? 'selected':''}}>Sea View</option>
+                        <option value="Hill View" {{$editData->view == 'Hill View' ? 'selected':''}}>Hill View</option>
+                    </select>
+                </div>
 
                 <div class="col-md-6">
                     <label for="input7" class="form-label">Bed Style</label>
