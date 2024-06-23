@@ -5,14 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Team;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     public function Index(){
+        // $team = Team::latest()->get();
 
         return view('frontend.index');
-
     } //end method
 
     public function UserProfile(){

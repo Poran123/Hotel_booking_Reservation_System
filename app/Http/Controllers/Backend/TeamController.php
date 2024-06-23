@@ -170,60 +170,46 @@ class TeamController extends Controller
     } //end method
 
     public function BookAreaUpdate(Request $request)
-{
-    $book_id = $request->id;
-    if($request->file('image')){
-        // $manager = new ImageManager(new Driver());
-        // $image = $request->file('image');
-        // $name_gen  = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        // Image::make($image)->resize(1000,1000)->save('upload/bookarea'.$name_gen);
-        // $save_url = 'upload/bookarea/'.$name_gen;
-
-    // if ($request->file('image')) {
-    //     $image = $request->file('image');
-    //     $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-    //     Image::make($image)->resize(1000, 1000)->save('upload/bookarea/'.$name_gen);
-    //     $save_url = 'upload/bookarea/'.$name_gen;
-
+    {
+        $book_id = $request->id;
+        if ($request->file('image')) {
             $manager = new ImageManager(new Driver());
             $name_gen = hexdec(uniqid()).'.'.$request->file('image')->getClientOriginalExtension();
             $img = $manager->read($request->file('image'));
             $img->resize(1000, 1000);
-            // $img = save(base_path('public/upload/category/' . $category));
-
-            $save_url = 'upload/bookarea/' . $name_gen; // Define the save URL
-
+            $save_url = 'upload/bookarea/' . $name_gen;
             $img->save(public_path($save_url));
-
-        BookArea::find($book_id)->update([
-            'short_title' => $request->short_title, // Update the column name to match the database
-            'main_title' => $request->main_title,
-            'short_desc' => $request->short_desc, // Update the column name to match the database
-            'link_url' => $request->link_url,
-            'image' => $save_url,
-        ]);
-
-        $notification = array(
-            'message' => 'Book Area Updated With Image Successfully',
-            'alert-type' => 'success',
-        );
-
-        return redirect()->back()->with($notification);
-    } else {
-        BookArea::find($book_id)->update([
-            'short_title' => $request->short_title, // Update the column name to match the database
-            'main_title' => $request->main_title,
-            'short_desc' => $request->short_desc, // Update the column name to match the database
-            'link_url' => $request->link_url,
-        ]);
-
-        $notification = array(
-            'message' => 'Book Area Updated Without Image Successfully',
-            'alert-type' => 'success',
-        );
-
-        return redirect()->back()->with($notification);
+    
+            BookArea::find($book_id)->update([
+                'short_title' => $request->short_title,
+                'main_title' => $request->main_title,
+                'short_desc' => $request->short_desc,
+                'link_url' => $request->link_url,
+                'image' => $save_url,
+            ]);
+    
+            $notification = array(
+                'message' => 'Book Area Updated With Image Successfully',
+                'alert-type' => 'success',
+            );
+    
+            return redirect()->back()->with($notification);
+        } else {
+            BookArea::find($book_id)->update([
+                'short_title' => $request->short_title,
+                'main_title' => $request->main_title,
+                'short_desc' => $request->short_desc,
+                'link_url' => $request->link_url,
+            ]);
+    
+            $notification = array(
+                'message' => 'Book Area Updated Without Image Successfully',
+                'alert-type' => 'success',
+            );
+    
+            return redirect()->back()->with($notification);
+        }
     }
-}
+    
     
 }
