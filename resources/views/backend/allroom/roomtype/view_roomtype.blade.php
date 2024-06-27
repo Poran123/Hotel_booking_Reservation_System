@@ -3,21 +3,34 @@
 
 <div class="page-content">
     <!--breadcrumb-->
+<div class="page-content"> 
+	<!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
 
+         
         <div class="ps-3">
-		<nav aria-label="breadcrumb">
+            <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
 
-                    <a href="{{ route('add.team') }}" class="btn btn-outline-primary px-5 radius-30"> Add Team Type </a>
                     <a href="{{ route('add.room.type') }}" class="btn btn-outline-primary px-5 radius-30"> Add Room Type </a>
+                    <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Room Type List</li>
                 </ol>
             </nav>
         </div>
 
+        <div class="ms-auto">
+            <div class="btn-group">
+                <a href="{{ route('add.room.type') }}" class="btn btn-primary px-5"> Add Room Type </a>
+
+            </div>
+        </div>
     </div>
     <!--end breadcrumb-->
     <h6 class="mb-0 text-uppercase">Room Type List  </h6>
+
+
     <hr/>
     <div class="card">
         <div class="card-body">
@@ -32,7 +45,7 @@
                         </tr>
                     </thead>
                     <tbody>
-					@foreach ($allData as $key=> $item ) 
+                       @foreach ($allData as $key=> $item ) 
         @php
             $rooms = App\Models\Room::where('roomtype_id',$item->id)->get();
         @endphp
@@ -41,29 +54,22 @@
     <td> <img src="{{ (!empty($item->room->image)) ? url('upload/roomimg/'.$item->room->image) : url('upload/no_image.jpg') }}" alt="" style="width: 50px; height:30px;" >   </td>
                             <td>{{ $item->name }}</td> 
                             <td>
-    <a href="{{ route('edit.team',$item->id) }}" class="btn btn-warning px-3 radius-30"> Edit</a>
-    <a href="{{ route('delete.team',$item->id) }}" class="btn btn-danger px-3 radius-30" id="delete"> Delete</a>
-
      @foreach ($rooms as $roo) 
     <a href="{{ route('edit.room',$roo->id) }}" class="btn btn-warning px-3 radius-30"> Edit</a>
-    <a href=" " class="btn btn-danger px-3 radius-30" id="delete"> Delete</a>
+    <a href="{{ route('delete.room',$roo->id) }}" class="btn btn-danger px-3 radius-30" id="delete"> Delete</a>
     @endforeach  
                             </td>
                         </tr>
                         @endforeach 
-
+                      
                     </tbody>
-
+                 
                 </table>
             </div>
         </div>
     </div>
-
+     
     <hr/>
-
+     
 </div>
-
-
-
-
 @endsection

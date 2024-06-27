@@ -245,20 +245,18 @@ class RoomController extends Controller
     } // end method
 
     public function DeleteRoom(Request $request, $id){
-
         $room = Room::find($id);
 
-        if(file_exists('upload/roomimg/'.$room->image) AND ! empty($room->image)){
-
-            @unlink('upload/roomimg/'.$room->image);
+        if (file_exists('upload/roomimg/'.$room->image) AND ! empty($room->image)) {
+           @unlink('upload/roomimg/'.$room->image);
         }
 
         $subimage = MultiImage::where('rooms_id',$room->id)->get()->toArray();
-        if(!empty($subimage)){
-            foreach ($subimage as $value){
-                if(!empty($value)){
-                    @unlink('upload/roomimg/multi_img/'.$value['multi_img']);
-                }
+        if (!empty($subimage)) {
+            foreach ($subimage as $value) {
+               if (!empty($value)) {
+               @unlink('upload/roomimg/multi_img/'.$value['multi_img']);
+               }
             }
         }
 
@@ -270,12 +268,11 @@ class RoomController extends Controller
 
         $notification = array(
             'message' => 'Room Deleted Successfully',
-            'alert-type' => 'success',
+            'alert-type' => 'success'
         );
 
-        return redirect()->back()->with($notification);
+        return redirect()->back()->with($notification);  
 
-
-    } //end method
+    }//End Method
 
 }

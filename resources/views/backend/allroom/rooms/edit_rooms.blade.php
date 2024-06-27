@@ -106,7 +106,7 @@
         </div>
         <div class="col-md-12">
             <label for="input11" class="form-label"> Description </label>
-            <textarea name="description" class="form-control" id="myeditorinstance" >{!! $editData->description !!}</textarea>
+            <textarea name="description" class="form-control" id="" placeholder="descirbe"></textarea>
         </div>
         <div class="row mt-2">
             <div class="col-md-12 mb-3">
