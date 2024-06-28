@@ -13,10 +13,16 @@ class Room extends Model
     public function type(){
         return $this->belongsTo(RoomType::class, 'roomtype_id', 'id');
     }
-    public function roomType()
-    {
-        return $this->belongsTo(RoomType::class, 'roomtype_id');
+
+    public function room_numbers(){
+        return $this->hasMany(RoomNumber::class, 'rooms_id')->where('status','Active');
     }
+   
 }
+
+// public function roomType()
+// {
+//     return $this->belongsTo(RoomType::class, 'roomtype_id');
+// }
 
 //<!--<a href="room-details.html">{{$item['type']['name']}}</a>-->

@@ -9,13 +9,15 @@
                     <h2>Our Rooms & Rates</h2>
                 </div>
                 <div class="row pt-45">
+
+                    @foreach($room as $item)               
                     <div class="col-lg-6">
                         <div class="room-card-two">
                             <div class="row align-items-center">
                                 <div class="col-lg-5 col-md-4 p-0">
                                     <div class="room-card-img">
-                                        <a href="room-details.html">
-                                            <img src="{{asset('frontend/assets/img/room/room-style-img1.jpg')}}" alt="Images">
+                                        <a href="{{url('room/details/'.$item->id)}}">
+                                            <img src="{{asset('upload/roomimg/'.$item->image)}}" alt="Images">
                                         </a>
                                     </div>
                                 </div>
@@ -23,9 +25,9 @@
                                 <div class="col-lg-7 col-md-8 p-0">
                                     <div class="room-card-content">
                                          <h3>
-                                             <a href="room-details.html">Luxury Room</a>
+                                             <a href="{{url('room/details/'.$item->id)}}">{{ $item['type']['name']}}</a>
                                         </h3>
-                                        <span>320 / Per Night </span>
+                                        <span>{{$item->price}} / Per Night </span>
                                         <div class="rating">
                                             <i class='bx bxs-star'></i>
                                             <i class='bx bxs-star'></i>
@@ -33,15 +35,15 @@
                                             <i class='bx bxs-star'></i>
                                             <i class='bx bxs-star'></i>
                                         </div>
-                                        <p>Lorem ipsum dolor sit amet, adipiscing elit. Suspendisse et faucibus felis, sed pulvinar purus.</p>
+                                        <p>{{$item->short_desc}}</p>
                                         <ul>
-                                            <li><i class='bx bx-user'></i> 4 Person</li>
-                                            <li><i class='bx bx-expand'></i> 35m2 / 376ft2</li>
+                                            <li><i class='bx bx-user'></i>{{$item->room_capacity}}</li>
+                                            <li><i class='bx bx-expand'></i> {{$item->size}}ft2</li>
                                         </ul>
 
                                         <ul>
-                                            <li><i class='bx bx-show-alt'></i> Sea Balcony</li>
-                                            <li><i class='bx bxs-hotel'></i> Kingsize / Twin</li>
+                                            <li><i class='bx bx-show-alt'></i>{{$item->view}}</li>
+                                            <li><i class='bx bxs-hotel'></i>{{$item->bed_style}}</li>
                                         </ul>
                                         
                                         <a href="room-details.html" class="book-more-btn">
@@ -52,6 +54,8 @@
                             </div>
                         </div>
                     </div>
+
+                    @endforeach
 
                     <div class="col-lg-6">
                         <div class="room-card-two">

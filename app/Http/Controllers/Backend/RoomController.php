@@ -26,13 +26,7 @@ class RoomController extends Controller
 
     } //end method
 
-    // public function EditRoom($id){
 
-    //     $basic_facility = Facility::where('rooms_id',$id)->get();
-    //     $editData = Room::find($id);
-    //     return view('backend.allroom.rooms.edit_rooms',compact('editData'));
-    //     return view('backend.allroom.rooms.edit_rooms',compact('editData','basic_facility'));
-    // } //End Method 
     // public function UpdateRoom(Request $request, $id){
 
     //     $room  = Room::find($id);
@@ -77,6 +71,7 @@ class RoomController extends Controller
         $room->discount = $request->discount;
         $room->short_desc = $request->short_desc;
         $room->description = $request->description; 
+        $room->status = 1;
         /// Update Single Image 
 
 
