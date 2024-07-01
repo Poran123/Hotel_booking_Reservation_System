@@ -186,7 +186,7 @@ class RoomController extends Controller
         $data->rooms_type_id = $request->rooms_type_id;
         $data->room_no = $request->room_no;
         $data->	status = $request->	status;
-        $data->save();
+       // $data->save();
 
 
         $notification = array(

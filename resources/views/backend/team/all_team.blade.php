@@ -48,7 +48,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                       @foreach ($team as $key=> $item ) 
+                       @foreach ($teams as $key=> $item ) 
                         <tr>
                             <td>{{ $key+1 }}</td>
                             <td> <img src="{{ asset($item->image) }}" alt="" style="width:70px; height:40px;" > </td>
@@ -56,8 +56,8 @@
                             <td>{{ $item->postion }}</td>
                             <td>{{ $item->facebook }}</td>
                             <td>
-    <a href="{{ route('edit.team',$item->id) }}" class="btn btn-warning px-3 radius-30"> Edit</a>
-    <a href="{{ route('delete.team',$item->id) }}" class="btn btn-danger px-3 radius-30" id="delete"> Delete</a>
+                    <a href="{{ route('edit.team',$item->id) }}" class="btn btn-warning px-3 radius-30"> Edit</a>
+                    <a href="{{ route('delete.team',$item->id) }}" class="btn btn-danger px-3 radius-30" id="delete"> Delete</a>
                             </td>
                         </tr>
                         @endforeach 
