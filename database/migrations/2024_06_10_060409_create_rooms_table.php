@@ -14,17 +14,17 @@ return new class extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->integer('roomtype_id');
-            $table->string('total_adult')->nullable;
-            $table->string('total_child')->nullable;
-            $table->string('room_capacity')->nullable;
-            $table->string('image')->nullable;
-            $table->string('price')->nullable;
-            $table->string('size')->nullable;
-            $table->string('view')->nullable;
-            $table->string('bed_style')->nullable;
+            $table->string('total_adult')->nullable();
+            $table->string('total_child')->nullable();
+            $table->string('room_capacity')->nullable();
+            $table->string('image')->nullable();
+            $table->string('price')->nullable();
+            $table->string('size')->nullable();
+            $table->string('view')->nullable();
+            $table->string('bed_style')->nullable();
             $table->integer('discount')->default(0);
-            $table->text('short_desc')->nullable;
-            $table->text('description')->nullable;
+            $table->text('short_desc')->nullable();
+            $table->text('description')->nullable();
             $table->integer('status')->default(1);
             $table->timestamps();
         });

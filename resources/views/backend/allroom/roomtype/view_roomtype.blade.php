@@ -7,7 +7,7 @@
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
-                    <a href="{{ route('add.room.type') }}" class="btn btn-outline-primary px-5 radius-30"> Add Room Type </a>
+                    <!-- <a href="{{ route('add.room.type') }}" class="btn btn-outline-primary px-5 radius-30">  Room Type List </a> -->
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a></li>
                     <li class="breadcrumb-item active" aria-current="page">Room Type List</li>
                 </ol>
@@ -37,7 +37,7 @@
                     <tbody>
                         @foreach ($allData as $key => $item)
                             @php
-                                $rooms = App\Models\RoomType::where('id', $item->id)->get();
+                                $rooms = App\Models\Room::where('roomtype_id', $item->id)->get();
                             @endphp
                             <!-- @if($rooms->count() > 0) -->
                                 @foreach ($rooms as $roo)
