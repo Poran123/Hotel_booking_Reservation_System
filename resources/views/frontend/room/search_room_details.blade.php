@@ -27,7 +27,7 @@
                         <div class="room-details-side">
                             <div class="side-bar-form">
                                 <h3>Booking Sheet </h3>
-    <form action="" method="pos" id="bk_form">
+    <form action="{{'user_booking_store', $roomdetails->id}}" method="post" id="bk_form">
         @csrf 
         <input type="hidden" name="room_id" value="{{ $roomdetails->id}}">
         <div class="row align-items-center">
@@ -67,7 +67,7 @@
 
             <input type="hidden" id="total_adult" value="{{ $roomdetails->total_adult }}">
             <input type="hidden" id="room_price" value="{{ $roomdetails->price }}">
-            <input type="hidden" id="discount_price" value="{{ $roomdetails->discount }}">
+            <input type="hidden" id="discount_p" value="{{ $roomdetails->discount }}">
 
             <div class="col-lg-12">
                 <div class="form-group">
